@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "mybooklib.h"
+
+int main()
+{ 
+ int choice;
+ char item;
+ instructions();
+ printf("\nChoice: "); scanf("%d", &choice);
+ while(choice!=4)
+  {
+  switch (choice) 
+     {
+      case 1: 
+      printf("Enter a book:\n");
+      /*scanf("%c", &item);*/
+      Book_t *p= insHead();
+      /*deallocBook(p);*/
+      break;
+      
+      case 2:
+      printf("Enter the id:\n");
+      scanf("%c", &item);
+      printElem(p);
+      break;
+      
+      case 3:
+      printf("Find the book from its id:\n");
+      scanf("%d", &p->id);
+      searchId(p);
+     }  
+  printf("\nChoice: "); scanf("%d", &choice);
+  } 
+ return 0;
+} 
