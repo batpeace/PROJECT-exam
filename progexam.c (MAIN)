@@ -23,13 +23,11 @@ int main()
       
       case 2:
       printf("Enter the id:\n");
-      scanf("%c", &item);
       printElem(p);
       break;
       
       case 3:
       printf("Find the book from its id:\n");
-      scanf("%hd", &p->id);
       searchId(p);
      }  
   printf("\nChoice: "); scanf("%d", &choice);
