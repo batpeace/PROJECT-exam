@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,12 +50,13 @@ Book_t *allocBook()
 Book_t *insTail(BookList_t* List)
 {  
  allocBook();
+ Cell_t *p;
  if(List->pLast==NULL)
    List->pLast=List->pFirst = p;
- else {
-       List->pLast->pNext = p;
-       List->pLast = p;
-      }
+ else 
+     List->pLast->pNext = p;
+     List->pLast = p;
+      
 } 
 
 void deallocBook(Book_t *book)
@@ -94,21 +94,19 @@ void printElem(Book_t *book)
 void instructions()
         {
          printf("Enter your choice:\n"
-                "1 to insert an element into the list.\n" 
+                "1 to insert an element at the end of the list.\n" 
                 "2 to see a book from its id.\n"
                 "3 to see if the book is in the list from its id.\n"
                 "4 to end.\n");
         }        
 
-void searchId(int id, Book_t A, int elementsnumber)
+void searchId(Book_t A)
 {
- int i;
- for(i=0; i<elementsnumber; i++)
- {
-  if(A.id==id)
+ short id;
+ scanf("%hd", &id);
+ if(A.id==0)
+ printf("FALSE\n");
+ else if(id==A.id)
    printf("TRUE\n");
     else printf ("FALSE\n");
- }
 } 
-
- 
