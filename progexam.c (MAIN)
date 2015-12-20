@@ -16,7 +16,8 @@ int main()
       case 1: 
       printf("Enter a book:\n");
       /*scanf("%c", &item);*/
-      Book_t *p= insHead();
+      Book_t *p= insTail();
+      allocBook(p);
       /*deallocBook(p);*/
       break;
       
@@ -28,7 +29,7 @@ int main()
       
       case 3:
       printf("Find the book from its id:\n");
-      scanf("%d", &p->id);
+      scanf("%hd", &p->id);
       searchId(p);
      }  
   printf("\nChoice: "); scanf("%d", &choice);
