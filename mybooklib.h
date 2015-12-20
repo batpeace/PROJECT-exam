@@ -1,4 +1,3 @@
-
 enum book { Thriller=0, Fantasy, Novel, Noir, Adventure, Action, Horror };
 struct Date { short day;
               short month;
@@ -20,13 +19,13 @@ typedef struct Cell { Book_t book;
 typedef struct BookList { Cell_t* pFirst; Cell_t *pLast; } BookList_t; 
 
                      
-Book_t* allocBook();                               //Allocare memoria per una struct Book.
-Book_t* insHead();                                 //Inserire libro in cima alla lista
-Book_t *insTail();                                 //Inserire libro in fondo alla lista.
-void deallocBook(Book_t*);                         //Libera spazio in memoria.
-void printElem(Book_t*);                           //Stampare elementi di un libro dato il suo codice.
-void rmvHead(Cell_t*);                             //Eliminazione libro in cima alla lista. 
-void rmvTail(Cell_t*);                             //Eliminazione libro in fondo alla lista.
-void printList(BookList_t a);                      //Stampo tutti i campi di tutta la lista. 
-void instructions();                               //Scegliere la funzione da svolgere.
-void searchId();                                   //Ricerca elemento attraverso il suo codice.
+Cell_t* allocBook();                            //Allocare memoria per una struct Cell.
+void insHead();                                 //Inserire libro in cima alla lista
+void insTail();                                 //Inserire libro in fondo alla lista.
+void deallocBook(Cell_t*);                      //Libera spazio in memoria.
+void printElem(Book_t*);                        //Stampare elementi di un libro dato il suo codice.
+void rmvHead(Cell_t*);                          //Eliminazione libro in cima alla lista. 
+void rmvTail(Cell_t*);                          //Eliminazione libro in fondo alla lista.
+void printList(BookList_t a);                   //Stampo tutti i campi di tutta la lista. 
+void instructions();                            //Scegliere la funzione da svolgere.
+Cell_t* searchId();                             //Ricerca elemento attraverso il suo codice.
