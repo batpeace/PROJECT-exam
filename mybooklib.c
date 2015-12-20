@@ -4,9 +4,10 @@
 #include "mybooklib.h"
 #include <stdbool.h>
 
-Book_t *allocBook()
+Cell_t *allocBook()
 {
-  Book_t *p= malloc(sizeof(Book_t));
+ Cell_t *Ptr = malloc(sizeof(Cell_t));
+ Book_t *p = &Ptr->book;
  if(p==NULL)
  {
   printf("Memory allocation failed!\n");
@@ -44,22 +45,23 @@ Book_t *allocBook()
  printf("|  The id for this book is:  ");
  scanf("%hd", &p->id);
  printf("--------------------------------------------------\n");
+ return Ptr;
  }
 
 
-Book_t *insTail(BookList_t* List)
+void insTail(BookList_t* List)
 {  
  allocBook();
- Cell_t *p;
- if(List->pLast==NULL)
-   List->pLast=List->pFirst = p;
+ Cell_t *ren= allocBook();
+ if(List->pLast==NULL)                           //In onore di Kylo Ren.
+   List->pLast=List->pFirst = ren;
  else 
-     List->pLast->pNext = p;
-     List->pLast = p;
+     List->pLast->pNext = ren;
+     List->pLast = ren;
       
 } 
 
-void deallocBook(Book_t *book)
+void deallocBook(Cell_t *book)
 {
   free (book);
 }
@@ -100,7 +102,7 @@ void instructions()
                 "4 to end.\n");
         }        
 
-void searchId(Book_t A)
+Cell_t* searchId(Book_t A)                       //Puntatore alla Cell del libro che cerco.
 {
  short id;
  scanf("%hd", &id);
@@ -110,3 +112,6 @@ void searchId(Book_t A)
    printf("TRUE\n");
     else printf ("FALSE\n");
 } 
+
+ 
+ 
