@@ -22,7 +22,7 @@ int main()
       case 2:
       printf("Enter the id:\n");
       Cell_t *p = searchId();
-      printElem(p);
+      printElem(&p->book);
       break;
  
       case 3:
