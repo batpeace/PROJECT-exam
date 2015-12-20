@@ -1,16 +1,18 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "mybooklib.h"
 #include <stdbool.h>
-Book_t *insHead(BookList_t* List)
+
+Book_t *allocBook()
 {
- Book_t *p= malloc(sizeof(Book_t));
+  Book_t *p= malloc(sizeof(Book_t));
  if(p==NULL)
  {
   printf("Memory allocation failed!\n");
- }  
- printf("--------------------------------------------------\n");
+ } 
+  printf("--------------------------------------------------\n");
  printf("|  Title:  ");
  scanf("%s", p->title);
  printf("|  Writer:  ");
@@ -43,13 +45,18 @@ Book_t *insHead(BookList_t* List)
  printf("|  The id for this book is:  ");
  scanf("%hd", &p->id);
  printf("--------------------------------------------------\n");
- /*if(List->pLast==NULL)
+ }
+
+
+Book_t *insTail(BookList_t* List)
+{  
+ allocBook();
+ if(List->pLast==NULL)
    List->pLast=List->pFirst = p;
  else {
        List->pLast->pNext = p;
        List->pLast = p;
-      }*/
-return p;
+      }
 } 
 
 void deallocBook(Book_t *book)
@@ -93,13 +100,15 @@ void instructions()
                 "4 to end.\n");
         }        
 
-void searchId(int id, Book_t A[], int elementsnumber)
+void searchId(int id, Book_t A, int elementsnumber)
 {
  int i;
  for(i=0; i<elementsnumber; i++)
  {
-  if(A[i].id==id)
+  if(A.id==id)
    printf("TRUE\n");
     else printf ("FALSE\n");
  }
 } 
+
+ 
