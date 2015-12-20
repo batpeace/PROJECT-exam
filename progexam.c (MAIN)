@@ -5,32 +5,31 @@
 
 int main()
 { 
+ BookList_t Library;
  int choice;
- char item;
  instructions();
- printf("\nChoice: "); scanf("%d", &choice);
+ printf("\nChoice: "); 
+ scanf("%d", &choice);
  while(choice!=4)
   {
   switch (choice) 
      {
       case 1: 
       printf("Enter a book:\n");
-      /*scanf("%c", &item);*/
-      Book_t *p= insTail();
-      allocBook(p);
-      /*deallocBook(p);*/
+      insTail(&Library);
       break;
       
       case 2:
       printf("Enter the id:\n");
+      Cell_t *p = searchId();
       printElem(p);
       break;
-      
+ 
       case 3:
       printf("Find the book from its id:\n");
-      searchId(p);
+      searchId();
      }  
   printf("\nChoice: "); scanf("%d", &choice);
   } 
  return 0;
-} 
+}  
