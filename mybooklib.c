@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "mybooklib.h"
-#include <stdbool.h>
 
 Cell_t *allocBook()
 {
@@ -51,14 +50,12 @@ Cell_t *allocBook()
 
 void insTail(BookList_t* List)
 {  
- allocBook();
  Cell_t *ren= allocBook();
  if(List->pLast==NULL)                           //In onore di Kylo Ren.
    List->pLast=List->pFirst = ren;
  else 
      List->pLast->pNext = ren;
      List->pLast = ren;
-      
 } 
 
 void deallocBook(Cell_t *book)
@@ -102,16 +99,15 @@ void instructions()
                 "4 to end.\n");
         }        
 
-Cell_t* searchId(Book_t A)                       //Puntatore alla Cell del libro che cerco.
+Cell_t* searchId(Book_t Book)                    //Puntatore alla Cell del libro che cerco.
 {
+ Book_t *pBook = &Book;
  short id;
  scanf("%hd", &id);
- if(A.id==0)
+ if(pBook->id==0 && &pBook->id != &id)
  printf("FALSE\n");
- else if(id==A.id)
+ else /*if(pBook->id==&id)*/
    printf("TRUE\n");
-    else printf ("FALSE\n");
 } 
 
- 
  
