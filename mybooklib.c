@@ -100,11 +100,11 @@ void instructions()
         }        
 
 Cell_t* searchId()                    //Puntatore alla Cell del libro che cerco.
-{
- Cell_t* Temp;
+{                                     //Cosi non dà errori però non funziona, metto l'id e poi finisce lì.
+ Cell_t* Temp;                         
  short id;
  scanf("%hd", &id);
- while(Temp != NULL)
+ while(Temp = Temp->pNext)
   if(Temp->book.id==0 && Temp->book.id != id)
    printf("FALSE\n");
     else if (Temp->book.id == id)
