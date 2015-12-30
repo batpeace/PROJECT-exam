@@ -65,11 +65,7 @@ void deallocBook(Cell_t *book)
 
 void printElem(Book_t *book)
 {
- scanf("%hd", &book->id);
- if (&book->id == NULL)
-   printf("No id available.\n");
- else if(&book->id != NULL)
-   printf("The book you are searching for is:\n %s", book->title);
+ printf("The book you are searching for is:\n %s ", book->title);
  if(book->genre==0)
  	printf("the genre is 'thriller'");
  else if(book->genre==1)
@@ -100,7 +96,7 @@ void instructions()
                 "5 to end.\n");
         }        
 
-Cell_t* searchId()                               //Puntatore alla Cell del libro che cerco.
+/*void searchId()
 {
  Cell_t* Temp;
  short id;
@@ -110,16 +106,34 @@ Cell_t* searchId()                               //Puntatore alla Cell del libro
    printf("FALSE\n");
     else if (Temp->book.id == id)
      printf("TRUE\n");
+} */
+
+//sono due funzioni diverse dagli il nome che vuoi, comunque questa ^ non so quanto sia utile
+
+Cell_t* searchId(BookList_t* List)                               //Puntatore alla Cell del libro che cerco.
+{
+ Cell_t* Temp= List->pFirst;
+ short id;
+ scanf("%hd", &id);
+ while(Temp)
+   {
+     if(Temp->book.id== id) //esce dal loop quando trova il libro giusto
+       break;
+     Temp= Temp->pNext;
+    }
+ return Temp; //se ritorna NULL significa che non ha trovato il libro
 } 
 
-void rmvTail(Cell_t *pLast)
+void rmvTail(BookList_t* List)
 {                                                
- Book_t value;
- Cell_t tempPtr;                                 //Puntatore temporaneo.               
- value = (*pLast).book;
- tempPtr = *pLast;
- *pLast = (*pLast).pNext;
- free (tempPtr);
+ //Book_t value; cosa serebbe?
+ Cell_t* tempPtr= List->pFirst;                   //Puntatore temporaneo.               
+ //value = List->book;
+ while(tempPtr->pNext != List->pLast) //arriva al penultimo elemento
+   tempPtr= tempPtr->pNext;
+ tempPtr->pNext= NULL;
+ free (List->pLast);
+ List->pLast= tempPtr;
 }
  
  
