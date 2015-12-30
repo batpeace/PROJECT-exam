@@ -5,12 +5,13 @@
 
 int main()
 { 
+ (Cell_t).pLast = NULL;                            //Inizializza pLast.
  BookList_t Library;
  int choice;
  instructions();
  printf("\nChoice: "); 
  scanf("%d", &choice);
- while(choice!=4)
+ while(choice!=5)
   {
   switch (choice) 
      {
@@ -28,8 +29,14 @@ int main()
       case 3:
       printf("Find the book from its id:\n");
       searchId();
+      break;
+      
+      case 4:
+      printf("Remove the last book of the list.\n");
+      rmvTail(&pLast);
+      break;
      }  
   printf("\nChoice: "); scanf("%d", &choice);
   } 
  return 0;
-}  
+} 
