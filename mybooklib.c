@@ -50,8 +50,8 @@ Cell_t *allocBook()
 
 void insTail(BookList_t* List)
 {  
- Cell_t *ren= allocBook();
- if(List->pLast==NULL)                           //In onore di Kylo Ren.
+ Cell_t *ren= allocBook();                       //In onore di Kylo Ren.
+ if(List->pLast==NULL)                           
    List->pLast=List->pFirst = ren;
  else 
      List->pLast->pNext = ren;
@@ -77,7 +77,7 @@ void printElem(Book_t *book)
  else if(book->genre==2)
  	printf("the genre is 'novel'");
  else if(book->genre==3)
- 	printf("the genre 'noir'");
+ 	printf("the genre is 'noir'");
  else if(book->genre==4)
  	printf("the genre is 'adventure'");
  else if(book->genre==5)
@@ -96,12 +96,13 @@ void instructions()
                 "1 to insert an element at the end of the list.\n" 
                 "2 to see a book from its id.\n"
                 "3 to see if the book is in the list from its id.\n"
-                "4 to end.\n");
+                "4 to remove the last list's book.\n"
+                "5 to end.\n");
         }        
 
-Cell_t* searchId()                    //Puntatore alla Cell del libro che cerco.
-{                                     //Cosi non dà errori però non funziona, metto l'id e poi finisce lì.
- Cell_t* Temp;                         
+Cell_t* searchId()                               //Puntatore alla Cell del libro che cerco.
+{
+ Cell_t* Temp;
  short id;
  scanf("%hd", &id);
  while(Temp = Temp->pNext)
@@ -111,4 +112,14 @@ Cell_t* searchId()                    //Puntatore alla Cell del libro che cerco.
      printf("TRUE\n");
 } 
 
+void rmvTail(Cell_t *pLast)
+{                                                
+ Book_t value;
+ Cell_t tempPtr;                                 //Puntatore temporaneo.               
+ value = (*pLast).book;
+ tempPtr = *pLast;
+ *pLast = (*pLast).pNext;
+ free (tempPtr);
+}
+ 
  
