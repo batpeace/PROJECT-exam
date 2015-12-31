@@ -23,9 +23,9 @@ Cell_t* allocBook();                            //Allocare memoria per una struc
 void insHead();                                 //Inserire libro in cima alla lista
 void insTail();                                 //Inserire libro in fondo alla lista.
 void deallocBook(Cell_t*);                      //Libera spazio in memoria.
-void printElem(Book_t*);                        //Stampare elementi di un libro dato il suo codice.
+void printElem(Book_t* Book);                   //Stampare elementi di un libro puntato da *Book
 void rmvHead(BookList_t*);                      //Eliminazione libro in cima alla lista. 
-void rmvTail(Cell_t *pLast);                    //Eliminazione libro in fondo alla lista.
-void printList(BookList_t a);                   //Stampo tutti i campi di tutta la lista. 
+void rmvTail(BookList_t*);                      //Eliminazione libro in fondo alla lista.
+void printList(BookList_t*);                    //Stampo tutti i campi di tutta la lista. 
 void instructions();                            //Scegliere la funzione da svolgere.
-Cell_t* searchId();                             //Ricerca elemento attraverso il suo codice.
+Cell_t* searchId(BookList_t*);                    //Ricerca elemento attraverso il suo codice.
