@@ -126,14 +126,21 @@ Cell_t* searchId(BookList_t* List)                               //Puntatore all
 
 void rmvTail(BookList_t* List)
 {                                                
- //Book_t value; cosa serebbe?
+
  Cell_t* tempPtr= List->pFirst;                   //Puntatore temporaneo.               
- //value = List->book;
- while(tempPtr->pNext != List->pLast) //arriva al penultimo elemento
-   tempPtr= tempPtr->pNext;
- tempPtr->pNext= NULL;
- free (List->pLast);
- List->pLast= tempPtr;
+ if(tempPtr==List->pLast)
+   {
+     free(tempPtr);
+     List->pFirst= List->pLast= NULL;
+   }
+ else
+   {
+     while(tempPtr->pNext != List->pLast) //arriva al penultimo elemento
+       tempPtr= tempPtr->pNext;
+     tempPtr->pNext= NULL;
+     free(List->pLast);
+     List->pLast= tempPtr;
+   }
 }
  
  
