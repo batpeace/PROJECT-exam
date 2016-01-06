@@ -3,6 +3,7 @@
 #include <string.h>
 #include "mybooklib.h"
 
+
 Cell_t *allocBook()
 {
  Cell_t *Ptr = malloc(sizeof(Cell_t));
@@ -22,7 +23,8 @@ Cell_t *allocBook()
         "|         3.Noir;\n" 
         "|         4.Adventure;\n"
         "|         5.Action;\n"
-        "|         6.Horror. ");
+        "|         6.Horror.\n"
+        "|  You have chosen the genre number: "); 
  scanf("%u", &p->genre);
  while(1) //loop infinito
  {
@@ -51,96 +53,121 @@ Cell_t *allocBook()
 void insTail(BookList_t* List)
 {  
  Cell_t *ren= allocBook();                       //In onore di Kylo Ren.
- if(List->pLast==NULL)                           
-   List->pLast=List->pFirst = ren;
+ if(List->pLast==NULL)                          //Se la lista è vuota..          
+   List->pLast=List->pFirst = ren;               //collego il primo e l'ultimo elemento.
  else 
      List->pLast->pNext = ren;
      List->pLast = ren;
 } 
 
-void deallocBook(Cell_t *book)
-{
-  free (book);
-}
-
 void printElem(Book_t *book)
 {
- printf("The book you are searching for is:\n %s ", book->title);
- if(book->genre==0)
- 	printf("the genre is 'thriller'");
- else if(book->genre==1)
- 	printf("the genre is 'fantasy'");
- else if(book->genre==2)
- 	printf("the genre is 'novel'");
- else if(book->genre==3)
- 	printf("the genre is 'noir'");
- else if(book->genre==4)
- 	printf("the genre is 'adventure'");
- else if(book->genre==5)
- 	printf("the genre is 'action'");
- else if (book->genre==6)
- 	printf("the genre is 'horror'");
- else printf(". Unfortunatelly the genre is not available");  
-   printf(" and it's written by %s in %hd/%hd/%hd.\n",
+ printf("The book you are searching for is:\n%s. ", book->title);
+  if(book->genre==0)
+ 	 printf("The genre is 'thriller'");
+  else if(book->genre==1)
+ 	 printf("The genre is 'fantasy'");
+  else if(book->genre==2)
+ 	 printf("The genre is 'novel'");
+  else if(book->genre==3)
+ 	 printf("The genre is 'noir'");
+  else if(book->genre==4)
+ 	 printf("The genre is 'adventure'");
+  else if(book->genre==5)
+ 	 printf("The genre is 'action'");
+  else if (book->genre==6)
+ 	 printf("The genre is 'horror'");
+  else printf(". Unfortunatelly the genre is not available");  
+    printf(" and it's written by %s in %hd/%hd/%hd.\n",
           book->writer,
           book->published.day, book->published.month, book->published.year);          
 } 
 
+
 void instructions()
         {
-         printf("Enter your choice:\n"
+         printf("\nEnter your choice:\n"
                 "1 to insert an element at the end of the list.\n" 
-                "2 to see a book from its id.\n"
+                "2 to see the book's specifications.\n"
                 "3 to see if the book is in the list from its id.\n"
                 "4 to remove the last list's book.\n"
-                "5 to end.\n");
+                "5 to insert an element at the beginning of the list.\n"
+                "6 to remove the first book's list.\n"
+                "7 to end.\n");        
         }        
 
-/*void searchId()
+
+Cell_t* searchId(BookList_t* List)               //Puntatore alla Cell del libro che cerco.
 {
- Cell_t* Temp;
+ Cell_t* Temp = List->pFirst;
  short id;
  scanf("%hd", &id);
- while(Temp = Temp->pNext)
-  if(Temp->book.id==0 && Temp->book.id != id)
-   printf("FALSE\n");
-    else if (Temp->book.id == id)
-     printf("TRUE\n");
-} */
-
-//sono due funzioni diverse dagli il nome che vuoi, comunque questa ^ non so quanto sia utile
-
-Cell_t* searchId(BookList_t* List)                               //Puntatore alla Cell del libro che cerco.
-{
- Cell_t* Temp= List->pFirst;
- short id;
- scanf("%hd", &id);
- while(Temp)
-   {
-     if(Temp->book.id== id) //esce dal loop quando trova il libro giusto
-       break;
-     Temp= Temp->pNext;
-    }
- return Temp; //se ritorna NULL significa che non ha trovato il libro
+ while(Temp)                                     //Scorre tutta la lista.
+  {
+   if (Temp->book.id == id)                      //Esce dal ciclo quando trova il libro.
+   break;
+   Temp = Temp->pNext;
+  }
+ return Temp;
 } 
+
 
 void rmvTail(BookList_t* List)
 {                                                
-
- Cell_t* tempPtr= List->pFirst;                   //Puntatore temporaneo.               
- if(tempPtr==List->pLast)
+  Cell_t* tempPtr = List->pFirst;                 //Puntatore temporaneo.               
+  if(tempPtr == List->pLast)
    {
-     free(tempPtr);
-     List->pFirst= List->pLast= NULL;
-   }
- else
-   {
-     while(tempPtr->pNext != List->pLast) //arriva al penultimo elemento
+    free(tempPtr);
+    List->pFirst = List->pLast = NULL;
+   } 
+    else
+     {
+      while(tempPtr->pNext != List->pLast)       //Arriva al penultimo elemento.
        tempPtr= tempPtr->pNext;
-     tempPtr->pNext= NULL;
-     free(List->pLast);
-     List->pLast= tempPtr;
-   }
+       tempPtr->pNext = NULL;
+       free (List->pLast);
+       List->pLast= tempPtr;
+     }
+}
+
+
+void insHead(BookList_t* List)                   //Non va bene :D
+{  
+ Cell_t *p= allocBook();                       
+ if (List->pFirst == NULL)
+ List->pFirst = p;
+}  
+ 
+ 
+void rmvHead(BookList_t* List)                   //Nemmeno :D.
+{                                                
+  Cell_t* tempPtr= List->pFirst;                 //Puntatore temporaneo.               
+  if(tempPtr == List->pFirst)
+   {
+    free(tempPtr);
+    List->pFirst = List ->pLast = NULL;
+   } 
+    else
+     {
+      while(tempPtr->pNext != List->pLast)       //Arriva al penultimo elemento.
+       tempPtr= tempPtr->pNext;
+       tempPtr->pNext = NULL;
+       free (List->pFirst);
+       List->pFirst= tempPtr;
+     }
+} 
+
+Cell_t* Control(BookList_t* List)
+{
+ Cell_t *Temp = List->pFirst;
+ while(Temp)
+ { 
+  if (&List->pFirst->book == NULL && &List->pLast->book == NULL)
+  printf("The list is still empty. Please select another function.\n");
+  break;
+ }
+ Temp = Temp->pNext;
 }
  
+
  
