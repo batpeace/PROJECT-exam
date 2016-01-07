@@ -52,8 +52,8 @@ Cell_t *allocBook()
 
 void insTail(BookList_t* List)
 {  
- Cell_t *ren= allocBook();                       //In onore di Kylo Ren.
- if(List->pLast==NULL)                          //Se la lista è vuota..          
+ Cell_t *ren = allocBook();                      //In onore di Kylo Ren.
+ if(List->pLast == NULL)                         //Se la lista è vuota..          
    List->pLast=List->pFirst = ren;               //collego il primo e l'ultimo elemento.
  else 
      List->pLast->pNext = ren;
@@ -78,9 +78,11 @@ void printElem(Book_t *book)
   else if (book->genre==6)
  	 printf("The genre is 'horror'");
   else printf(". Unfortunatelly the genre is not available");  
-    printf(" and it's written by %s in %hd/%hd/%hd.\n",
+    printf(" and it's written by %s in %hd/%hd/%hd.\n"
+           "We have %hd books in library and %hd out library. Also the id for this book is %hd.\n",
           book->writer,
-          book->published.day, book->published.month, book->published.year);          
+          book->published.day, book->published.month, book->published.year,
+          book->inLibrary, book->outLibrary, book->id);          
 } 
 
 
@@ -131,7 +133,7 @@ void rmvTail(BookList_t* List)
 }
 
 
-void insHead(BookList_t* List)                   //Non va bene :D
+void insHead(BookList_t* List)                   //Non va bene :D.
 {  
  Cell_t *p= allocBook();                       
  if (List->pFirst == NULL)
@@ -161,13 +163,15 @@ Cell_t* Control(BookList_t* List)
 {
  Cell_t *Temp = List->pFirst;
  while(Temp)
- { 
-  if (&List->pFirst->book == NULL && &List->pLast->book == NULL)
-  printf("The list is still empty. Please select another function.\n");
+ {
+  if (&Temp->book == NULL)
+  printf("Sorry but the list is still empty. Please select another function.\n");
   break;
+  Temp = Temp->pNext;
  }
- Temp = Temp->pNext;
+ return Temp;
 }
  
 
+ 
  
