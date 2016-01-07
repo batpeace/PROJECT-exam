@@ -20,10 +20,13 @@ int main()
       break;
       
       case 2:
+      printf("Checking the list..\n");
       Cell_t *ptr = Control(&Library);
+      if (ptr != NULL)
+      break;
       printf("Enter the id:\n");
       Cell_t *p = searchId(&Library);
-      if(p!=NULL)
+      if(p != NULL)
       printElem(&p->book);
       else printf("No book with this id available.\n");
       break;
