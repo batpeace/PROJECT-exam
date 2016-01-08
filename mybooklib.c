@@ -12,7 +12,7 @@ Cell_t *allocBook()
  {
   printf("Memory allocation failed!\n");
  } 
-  printf("--------------------------------------------------\n");
+ printf("--------------------------------------------------\n");
  printf("|  Title:  ");
  scanf("%s", p->title);
  printf("|  Writer:  ");
@@ -26,7 +26,7 @@ Cell_t *allocBook()
         "|         6.Horror.\n"
         "|  You have chosen the genre number: "); 
  scanf("%u", &p->genre);
- while(1) //loop infinito
+ while(1)                                        //Loop infinito.
  {
   printf("|  Published in(dd/mm/yyyy):  ");
   scanf("%hd%hd%hd", 
@@ -36,7 +36,7 @@ Cell_t *allocBook()
  if(p->published.day<32)
    if(p->published.month<13)
      if(p->published.year<2016)
-    break; //esce dal loop
+    break;                                       //Esce dal loop solo se i valori sono corretti.
  printf("|  Immissione non valida\n");
  }
  printf("|  In library:  ");
@@ -56,7 +56,7 @@ void insTail(BookList_t* List)
  if(List->pLast == NULL)                         //Se la lista è vuota..          
    List->pLast=List->pFirst = ren;               //collego il primo e l'ultimo elemento.
  else 
-     List->pLast->pNext = ren;
+     List->pLast->pNext = ren;                   
      List->pLast = ren;
 } 
 
@@ -88,14 +88,16 @@ void printElem(Book_t *book)
 
 void instructions()
         {
-         printf("\nEnter your choice:\n"
-                "1 to insert an element at the end of the list.\n" 
-                "2 to see the book's specifications.\n"
-                "3 to see if the book is in the list from its id.\n"
-                "4 to remove the last list's book.\n"
-                "5 to insert an element at the beginning of the list.\n"
-                "6 to remove the first book's list.\n"
-                "7 to end.\n");        
+         printf("\nPlease first insert a book in the list.\n"
+                "\nEnter your choice:\n\n"
+                "[1] to insert an element at the end of the list.\n" 
+                "[2] to see the book's specifications.\n"
+                "[3] to see if the book is in the list from its id.\n"
+                "[4] to remove the last list's book.\n"
+                "[5] to insert an element at the beginning of the list.\n"
+                "[6] to remove the first book's list.\n"
+                "[7] to see the books in the list.\n"
+                "[8] to end.\n");        
         }        
 
 
@@ -117,7 +119,9 @@ Cell_t* searchId(BookList_t* List)               //Puntatore alla Cell del libro
 void rmvTail(BookList_t* List)
 {                                                
   Cell_t* tempPtr = List->pFirst;                 //Puntatore temporaneo.               
-  if(tempPtr == List->pLast)
+  if (tempPtr == NULL)
+  printf("The list is empty.\n");
+  else if(tempPtr == List->pLast)
    {
     free(tempPtr);
     List->pFirst = List->pLast = NULL;
@@ -133,7 +137,7 @@ void rmvTail(BookList_t* List)
 }
 
 
-void insHead(BookList_t* List)                   //Non va bene :D.
+void insHead(BookList_t* List)                   
 {  
  Cell_t *p= allocBook();                       
  if (List->pFirst == NULL)
@@ -141,7 +145,7 @@ void insHead(BookList_t* List)                   //Non va bene :D.
 }  
  
  
-void rmvHead(BookList_t* List)                   //Nemmeno :D.
+void rmvHead(BookList_t* List)                   
 {                                                
   Cell_t* tempPtr= List->pFirst;                 //Puntatore temporaneo.               
   if(tempPtr == List->pFirst)
@@ -159,19 +163,24 @@ void rmvHead(BookList_t* List)                   //Nemmeno :D.
      }
 } 
 
-Cell_t* Control(BookList_t* List)
+void printList(BookList_t* List)
 {
- Cell_t *Temp = List->pFirst;
- while(Temp)
+ Cell_t* Temp = List->pFirst;
+ if (Temp == NULL)
  {
-  if (&Temp->book == NULL)
-  printf("Sorry but the list is still empty. Please select another function.\n");
-  break;
-  Temp = Temp->pNext;
+  printf("The list is still empty.\n");
  }
- return Temp;
+ else 
+  { 
+   printf("\nThe list is:\n");
+   while(Temp != NULL) 
+    {
+     printf("%s --> ", Temp->book.title);
+     Temp = Temp->pNext;
+    }
+   printf("END\n\n");
+  }   
 }
  
-
  
  
