@@ -28,4 +28,4 @@ void rmvTail(BookList_t*);                      //Eliminazione libro in fondo al
 void printList(BookList_t*);                    //Stampo tutti i campi di tutta la lista. 
 void instructions();                            //Scegliere la funzione da svolgere.
 Cell_t* searchId(BookList_t*);                  //Ricerca elemento attraverso il suo id.
-Cell_t* Control(BookList_t*);                   //Controlla se la lista è ancora vuota.
+void printList(BookList_t*);                    //Stampa tutti i libri da cui la lista è composta.
