@@ -10,20 +10,17 @@ int main()
  instructions();
  printf("\nChoice: "); 
  scanf("%d", &choice);
- while(choice!=7)
+ while(choice!=8)
   {
-  switch (choice) 
+   switch (choice) 
      {
       case 1: 
       printf("Enter the book:\n");
       insTail(&Library);
+      printList(&Library);
       break;
       
       case 2:
-      printf("Checking the list..\n");
-      Cell_t *ptr = Control(&Library);
-      if (ptr != NULL)
-      break;
       printf("Enter the id:\n");
       Cell_t *p = searchId(&Library);
       if(p != NULL)
@@ -40,8 +37,8 @@ int main()
       break;
       
       case 4:
-      printf("Remove the last book of the list.\n");
       rmvTail(&Library);
+      printf("Removed the last book of the list.\n");
       break;
       
       case 5:
@@ -50,9 +47,12 @@ int main()
       break;
             
       case 6:
-      printf("Remove the first book of the list.\n");
+      printf("Removed the first book of the list.\n");
       rmvHead(&Library);
       break;
+      
+      case 7:
+      printList(&Library);
      } 
       
       printf("\nChoice: "); 
