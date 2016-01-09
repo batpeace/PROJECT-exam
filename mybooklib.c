@@ -97,7 +97,8 @@ void instructions()
                 "[5] to insert an element at the beginning of the list.\n"
                 "[6] to remove the first book's list.\n"
                 "[7] to see the books in the list.\n"
-                "[8] to end.\n");        
+                "[8] to delete a book from its id.\n"
+                "[9] to end.\n");        
         }        
 
 
@@ -179,8 +180,13 @@ void printList(BookList_t* List)
      Temp = Temp->pNext;
     }
    printf("END\n\n");
-  }   
-}
+  }
+}  
  
+ 
+void rmvId(Book_t *Book)
+{
+ free (Book);
+} 
  
  
