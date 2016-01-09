@@ -10,7 +10,7 @@ int main()
  instructions();
  printf("\nChoice: "); 
  scanf("%d", &choice);
- while(choice!=8)
+ while(choice!=9)
   {
    switch (choice) 
      {
@@ -38,7 +38,7 @@ int main()
       
       case 4:
       rmvTail(&Library);
-      printf("Removed the last book of the list.\n");
+      printf("Book removed successfully.\n");
       break;
       
       case 5:
@@ -53,6 +53,15 @@ int main()
       
       case 7:
       printList(&Library);
+      break;
+      
+      case 8:
+      printf("Enter the book's id you want to delete:\n");
+      Cell_t* Ptr = searchId(&Library);
+      if (Ptr != NULL)
+      rmvId(&Ptr->book);
+      else printf("No book with this id available.\n");
+      break;
      } 
       
       printf("\nChoice: "); 
@@ -60,4 +69,4 @@ int main()
   
   }    
  return 0;
-}   
+} 
