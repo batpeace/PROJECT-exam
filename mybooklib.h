@@ -29,3 +29,4 @@ void printList(BookList_t*);                    //Stampo tutti i campi di tutta 
 void instructions();                            //Scegliere la funzione da svolgere.
 Cell_t* searchId(BookList_t*);                  //Ricerca elemento attraverso il suo id.
 void printList(BookList_t*);                    //Stampa tutti i libri da cui la lista è composta.
+void rmvId(Book_t*);                            //Rimuove un elemento dato il suo id.
