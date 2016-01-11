@@ -6,11 +6,12 @@
 int main()
 { 
  BookList_t Library;
+ BookList_t *List;
  int choice;
  instructions();
  printf("\nChoice: "); 
  scanf("%d", &choice);
- while(choice!=9)
+ while(choice!=11)
   {
    switch (choice) 
      {
@@ -58,15 +59,58 @@ int main()
       case 8:
       printf("Enter the book's id you want to delete:\n");
       Cell_t* Ptr = searchId(&Library);
+      Cell_t *Temp = List->pFirst;
       if (Ptr != NULL)
-      rmvId(&Ptr->book);
-      else printf("No book with this id available.\n");
+      while(Temp != Ptr)
+      {
+       Temp = Temp->pNext;
+       Temp->pNext = NULL;
+       free(Ptr);
+       Ptr = Temp;
+      }        
+      break;
+      
+      case 9: //Funzione che restituisce un libro. (copyIn)
+      printf("Insert the id of the book you are returning:\n");
+      Cell_t* Pointer = searchId(&Library);
+      if(Pointer != NULL)
+       if (Pointer->book.outLibrary == 0)
+        { 
+         printf ("No book with this id is out of the library.\n"); 
+        }
+      else if (Pointer->book.outLibrary > 0)
+      {
+       Pointer->book.inLibrary++;
+       Pointer->book.outLibrary--;
+       printf("Now we have %hd %s in library and %hd out library.\n", 
+               Pointer->book.inLibrary,
+               Pointer->book.title,
+               Pointer->book.outLibrary);
+      }
+      break;
+      
+      case 10: //Funzione che prende un libro in prestito. (copyOut).
+      printf("Insert the id of the book you are borrowing:\n");
+      Cell_t* Puntatore = searchId(&Library);
+      if(Puntatore != NULL)
+        if (Puntatore->book.inLibrary == 0)
+        {
+         printf("All the books with this id are out of the library.\n");
+        } 
+         else if (Puntatore->book.inLibrary > 0)
+         {
+          Puntatore->book.inLibrary--;
+          Puntatore->book.outLibrary++;
+          printf("Now we have %hd %s in library and %hd out library.\n", 
+                  Puntatore->book.inLibrary,
+                  Puntatore->book.title,
+                  Puntatore->book.outLibrary); }            
       break;
      } 
-      
       printf("\nChoice: "); 
       scanf("%d", &choice);
-  
   }    
- return 0;
-} 
+ printf("\nThanks for using our e-Library and have a good day!\n\n");
+ return 0; 
+}
+     
