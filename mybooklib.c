@@ -37,7 +37,7 @@ Cell_t *allocBook()
    if(p->published.month<13)
      if(p->published.year<2016)
     break;                                       //Esce dal loop solo se i valori sono corretti.
- printf("|  Immissione non valida\n");
+ printf("|  Invalid input!\n");
  }
  printf("|  In library:  ");
  scanf("%hd", &p->inLibrary);
