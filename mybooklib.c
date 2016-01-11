@@ -14,9 +14,9 @@ Cell_t *allocBook()
  } 
  printf("--------------------------------------------------\n");
  printf("|  Title:  ");
- scanf("%s", p->title);
+ scanf(" %[^\n]", p->title);
  printf("|  Writer:  ");
- scanf("%s", p->writer);
+ scanf(" %[^\n]", p->writer);
  printf("|  Genre: 0.Thriller;\n"
         "|         1.Fantasy;\n" 
         "|         2.Novel;\n"
@@ -88,7 +88,8 @@ void printElem(Book_t *book)
 
 void instructions()
         {
-         printf("\nPlease first insert a book in the list.\n"
+         printf("\nWelcome to our e-Library!\n" 
+                "\nPlease first insert a book in the list.\n"
                 "\nEnter your choice:\n\n"
                 "[1] to insert an element at the end of the list.\n" 
                 "[2] to see the book's specifications.\n"
@@ -98,7 +99,9 @@ void instructions()
                 "[6] to remove the first book's list.\n"
                 "[7] to see the books in the list.\n"
                 "[8] to delete a book from its id.\n"
-                "[9] to end.\n");        
+                "[9] to return a book with a specific id.\n"
+                "[10] to borrow a book with a specific id.\n"
+                "[11] to end.\n");        
         }        
 
 
@@ -182,11 +185,4 @@ void printList(BookList_t* List)
    printf("END\n\n");
   }
 }  
- 
- 
-void rmvId(Book_t *Book)
-{
- free (Book);
-} 
- 
  
