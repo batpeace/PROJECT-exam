@@ -31,17 +31,17 @@ int main()
       break;
       
       case 3: 
-      printf("\nRemoving the first book of the list...\n");
+      printf("\nRemoving the first book of the list...\n\n");
       rmvHead(&Library);
-      printf("Function worked correctly.\n");
+      printf("\nFunction worked correctly.\n");
       printList(&Library);
       printf("\nList printed correctly.\n");
       break;
       
       case 4:
-      printf("\nRemoving the last book of the list...\n");
+      printf("\nRemoving the last book of the list...\n\n");
       rmvTail(&Library);
-      printf("Function worked correctly.\n");
+      printf("\nFunction worked correctly.\n");
       printList(&Library);
       printf("\nList printed correctly.\n");
       break;
