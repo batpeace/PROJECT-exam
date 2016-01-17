@@ -20,7 +20,7 @@ Cell_t *allocBook()
  scanf(" %[^\n]", p->title);                     //Per poter utilizzare gli spazi con scanf..
  printf("|  Writer:  ");
  scanf(" %[^\n]", p->writer);                    //..altrimenti avrei utilizzato normalmente "%s".
- while (1)
+ while (1)                                       //Loop infinito.
  {
   printf("|  Genre: 0.Thriller;\n"
          "|         1.Fantasy;\n" 
@@ -32,12 +32,12 @@ Cell_t *allocBook()
          "|  You have chosen the genre number: "); 
  scanf("%u", &p->genre);
  if(p->genre <= 6)
- break;
+ break;                                           //Se i valori sono corretti esce.
  printf("|\n"
         "|  Genre not available.\n"
         "|\n");
  }
- while(1)                                        //Loop infinito.
+ while(1)                                        //Stesso discorso del ciclo precedente.
  {
   printf("|  Published in(dd/mm/yyyy):  ");
   scanf("%hd%hd%hd", 
@@ -47,7 +47,7 @@ Cell_t *allocBook()
   if(p->published.day<32)
     if(p->published.month<13)
       if(p->published.year<2016)
-     break;                                       //Esce dal loop solo se i valori sono corretti.
+     break;                                       
   printf("|  Invalid input!\n");
  }
  printf("|  In library:  ");
@@ -59,7 +59,7 @@ Cell_t *allocBook()
  printf("__________________________________________________\n");
  printf("|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_\n");
  printf("\n");
- return Ptr;
+ return Ptr;                                     //In uscita ho una "Cell_t" con dentro un "book" che contiene i dati inseriti.
  }
 
 
@@ -106,7 +106,7 @@ void instructions()
                 "\nEnter your choice:\n\n"
                 "[1] to insert a book at the beginning of the list.\n" 
                 "[2] to insert a book at the end of the list.\n"
-                "[3] to remove the first book's list.\n"
+                "[3] to remove the first list's book.\n"
                 "[4] to remove the last list's book.\n"
                 "[5] to remove a book with a specific id.\n"
                 "[6] to see if a book is in the list using its id.\n"
@@ -118,10 +118,10 @@ void instructions()
         }        
 
 
-Cell_t* searchId(BookList_t* List)               //Puntatore alla Cell del libro che cerco.
+Cell_t* searchId(BookList_t* List)               
 {
- Cell_t* TempPtr = List->pFirst;
- short id;
+ Cell_t* TempPtr = List->pFirst;                 //Puntatore alla "Cell_t" del libro che cerco; deve puntare le "Cell_t".
+ short id;                                       //Immagazzino l'id qui così lo posso confrontare.
  scanf("%hd", &id);
  while(TempPtr)                                  //Scorre tutta la lista.
   {
@@ -138,10 +138,10 @@ void rmvTail(BookList_t* List)
   Cell_t* tempPtr = List->pFirst;                 //Puntatore temporaneo.               
   if (tempPtr == NULL)
   printf("The list is empty.\n");
-  else if(tempPtr == List->pLast)
+  else if(tempPtr == List->pLast)                //Se la lista è vuota..
    {
     free(tempPtr);
-    List->pFirst = List->pLast = NULL;
+    List->pFirst = List->pLast = NULL;          //..collego il primo elemento con l'ultimo.    
    } 
     else
      {
@@ -169,7 +169,7 @@ void insHead(BookList_t* List)
 
 void rmvHead(BookList_t* List)                   
 {                                                
-  Cell_t* tempPtr = List->pFirst;                 //Puntatore temporaneo.               
+  Cell_t* tempPtr = List->pFirst;                              
   if (tempPtr == NULL)
   printf("The list is empty.\n");
   else if(tempPtr == List->pLast)
@@ -198,7 +198,7 @@ void printList(BookList_t* List)
    printf("\nThe list is:\n\n");
    while(Temp != NULL) 
     {
-     printf("%s --> ", Temp->book.title);
+     printf("%s --> ", Temp->book.title);     //Stampa la lista, stampando i titoli di tutti i libri.   
      Temp = Temp->pNext;
     }
    printf("NULL\n\n");
@@ -244,7 +244,7 @@ void copyOut(BookList_t* List)
         {
          if (Puntatore->book.inLibrary == 0)
          { 
-          printf("All the books with this id are out of the library.\n");
+          printf("All the books with this id are out of the library.\n");   
          }  
          else if (Puntatore->book.inLibrary > 0)
           {
